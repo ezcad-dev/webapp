@@ -1,7 +1,8 @@
 import React from "react";
 // import logo from "./logo.svg";
-import { Counter } from "./features/counter/Counter";
+// import { Counter } from "./features/counter/Counter";
 import "./App.css";
+import { makeStyles, CssBaseline } from "@material-ui/core";
 
 function App() {
   return (

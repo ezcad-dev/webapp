@@ -6,6 +6,15 @@ import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+// Load env variables
+// https://stackoverflow.com/a/49108323
+// console.log('DOTENV', process.env.REACT_APP_API_URL);
+
+// Quick test dispatch action
+import {fetchSurvey} from './features/surveys/surveysSlice';
+const surveyName = 'survey1';
+store.dispatch(fetchSurvey(surveyName));
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
