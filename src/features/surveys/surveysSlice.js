@@ -23,6 +23,12 @@ const surveysAdapter = createEntityAdapter({
   sortComparer: (a, b) => a.name.localeCompare(b.name),
 });
 
+export const {
+  selectAll: selectAllSurveys,
+  selectIds: selectSurveyIds,
+  selectById: selectSurveyById,
+} = surveysAdapter.getSelectors((state) => state.surveys);
+
 const initialState = surveysAdapter.getInitialState({
   status: "idle",
   error: null,
@@ -37,7 +43,10 @@ const surveysSlice = createSlice({
       state.status = "loading";
       state.error = null;
     },
-    [fetchSurvey.fulfilled]: surveysAdapter.upsertOne,
+    [fetchSurvey.fulfilled]: (state, action) => {
+      surveysAdapter.upsertOne(state, action);
+      state.status = "succeeded";
+    },
   },
 });
 
